@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Waybar — Transparent top bar  |  Lime-green accent theme
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Global reset ─────────────────────────────────────────────────── */
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+    font-size:     14px;
+    min-height:    0;
+}
+
+/* ── Bar window ───────────────────────────────────────────────────── */
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.45);
+    color:            #a6e3a1;
+    transition:       background-color 0.3s ease;
+}
+
+/* ── Shared "pill" wrapper for every right-side module ───────────── */
+.modules-right > widget > * {
+    margin:  4px 3px;
+    padding: 0 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LEFT — Sway workspaces
+   ═══════════════════════════════════════════════════════════════════ */
+#workspaces {
+    margin-left: 8px;
+}
+
+#workspaces button {
+    min-width:        32px;
+    min-height:       28px;
+    margin:           6px 3px;
+    padding:          0 6px;
+    background:       rgba(0, 0, 0, 0.35);
+    border:           1px solid rgba(166, 227, 161, 0.35);   /* dim lime border */
+    border-radius:    4px;
+    color:            rgba(166, 227, 161, 0.6);
+    font-weight:      600;
+    transition:       all 0.15s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(166, 227, 161, 0.15);
+    border-color: #a6e3a1;
+    color:        #a6e3a1;
+}
+
+/* ── Active / focused workspace ───────────────────────────────────── */
+#workspaces button.focused,
+#workspaces button.active {
+    background:   rgba(166, 227, 161, 0.18);
+    border:       1px solid #a6e3a1;
+    border-radius: 4px;
+    color:        #a6e3a1;
+    box-shadow:   0 0 6px rgba(166, 227, 161, 0.5);
+}
+
+/* ── Urgent workspace ─────────────────────────────────────────────── */
+#workspaces button.urgent {
+    background:  rgba(243, 139, 168, 0.2);
+    border-color: #f38ba8;
+    color:        #f38ba8;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RIGHT — shared lime-green box style
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Every right-side module gets a lime box */
+#tray,
+#network,
+#pulseaudio,
+#backlight,
+#battery,
+#clock {
+    background:   rgba(166, 227, 161, 0.10);
+    border:       1px solid rgba(166, 227, 161, 0.55);
+    border-radius: 5px;
+    color:        #a6e3a1;
+    padding:      2px 12px;
+    margin:       6px 3px;
+    font-size:    15px;
+    transition:   background 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover glow */
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover,
+#clock:hover {
+    background: rgba(166, 227, 161, 0.20);
+    box-shadow: 0 0 6px rgba(166, 227, 161, 0.45);
+}
+
+/* ── Tray ─────────────────────────────────────────────────────────── */
+#tray {
+    padding: 2px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(243, 139, 168, 0.25);
+    border-color:     #f38ba8;
+}
+
+/* ── Network ──────────────────────────────────────────────────────── */
+#network.disconnected {
+    color:        #f38ba8;
+    border-color: rgba(243, 139, 168, 0.55);
+}
+
+/* ── Audio ────────────────────────────────────────────────────────── */
+#pulseaudio.muted {
+    color:        rgba(166, 227, 161, 0.35);
+    border-color: rgba(166, 227, 161, 0.2);
+}
+
+/* ── Battery states ───────────────────────────────────────────────── */
+#battery.warning {
+    color:        #fab387;
+    border-color: rgba(250, 179, 135, 0.55);
+}
+
+#battery.critical {
+    color:        #f38ba8;
+    border-color: rgba(243, 139, 168, 0.55);
+    animation:    blink 0.8s linear infinite;
+}
+
+#battery.charging,
+#battery.plugged {
+    color:        #a6e3a1;
+}
+
+@keyframes blink {
+    to { opacity: 0.4; }
+}
+
+/* ── Clock ────────────────────────────────────────────────────────── */
+#clock {
+    font-size:   14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+}

@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+
+    "modules-center": [],
+
+    "modules-right": [
+        "tray",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "clock",
+        "custom/notification"
+    ],
+
+    // ── Left ──────────────────────────────────────────────────────────────
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": []
+        }
+    },
+
+    // ── Right ─────────────────────────────────────────────────────────────
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+        
+    
+    "custom/notification": {
+        "exec": "makoctl list | grep -c 'id'",
+        "interval": 2,
+        "format": "🔔 {}",
+        "on-click": "makoctl invoke",
+        "on-click-right": "makoctl dismiss --all"
+    },
+    
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "bash -c 'if command -v nm-connection-editor &>/dev/null; then nm-connection-editor; elif command -v wl-wifi &>/dev/null; then wl-wifi; else foot nmtui; fi'"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "Volume: {volume}%",
+        "on-click": "bash -c 'if command -v pavucontrol &>/dev/null; then pavucontrol; else foot pulsemixer; fi'",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%" ,
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip-format": "Brightness: {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "on-click": "bash -c 'if command -v wdisplays &>/dev/null; then wdisplays; else foot brightnessctl; fi'"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄",
+        "format-plugged": "󰚥",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{capacity}% — {timeTo}",
+        "states": {
+            "critical": 15,
+            "warning": 30
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "interval": 1
+    }
+}
