@@ -1,0 +1,24 @@
+window {
+  background-color: rgba(20, 20, 20, 0.85);
+  border-radius: 12px;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 14px;
+}
+
+#input {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgba(40, 40, 40, 0.9);
+  margin: 10px;
+  border: none;
+  color: #ffffff;
+}
+
+#entry {
+  padding: 8px;
+}
+
+#entry:selected {
+  background-color: rgba(90, 140, 255, 0.35);
+  border-radius: 6px;
+}

@@ -1,0 +1,10 @@
+show=drun
+location=center
+width=40%
+height=20%
+prompt=Search
+allow_images=true
+case-sensitive=false
+fuzzy=true
+hide_on_click=true
+hide-on-focus-loss=true
