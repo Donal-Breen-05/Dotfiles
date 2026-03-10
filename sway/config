@@ -7,6 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
+set $file_manager dolphin
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -212,13 +213,13 @@ bindsym $mod+r mode "resize"
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    #bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    #bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    #bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    #bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
     # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    #bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    #bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
 
 #
@@ -239,17 +240,13 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 # Volume
-bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
-bindsym XF86AudioLowerVolume exec swayosd-client --output-volume lower
-bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
+bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
 
 #brightness
-bindsym XF86MonBrightnessUp exec swayosd-client --brightness raise
-bindsym XF86MonBrightnessDown exec swayosd-client --brightness lower
-
-#on screen stuff 
-exec_always swayosd-server
-
+bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
+bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
 # remove the top border on the windows 
 default_border pixel 2
 default_floating_border pixel 0
@@ -260,50 +257,69 @@ gaps outer 6
 smart_gaps on
 smart_borders on
 
+
+#on screen stuff 
+exec_always swayosd-server
+
 # start waybar 
 exec_always --no-startup-id waybar
 
-# lock screen 
+# notification daemon 
+exec mako
+
+# kde connect 
+exec kdeconnect-daemon
+
+# very important dont change or everything breaks 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 
 #tray icons 
 exec_always kdeconnect-indicator
 
 #keybind script 
-bindsym $mod+slash exec ~/.config/sway/show-keybinds.sh
+bindsym $mod+slash exec sh -c ~/.config/sway/scripts/show-keyboard.sh
+bindsym $mod+p exec sh -c ~/.config/sway/scripts/power-menu.sh
 
 ###################################
 #     power button                # 
 ###################################
 
-
 exec swayidle -w \
-    timeout 300 'swaylock -f' \
+    timeout 300 'hyprlock' \
     timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f'
-
-
-
-exec mako
+    before-sleep 'hyprlock'
+    
+#exec swayidle -w \
+#    timeout 300 'swaylock -f' \
+#    timeout 600 'swaymsg "output * dpms off"' \
+#        resume 'swaymsg "output * dpms on"' \
+#    before-sleep 'swaylock -f'
 
 # Full screen screenshot → saves to ~/Pictures
 #bindsym Print exec sh -c 'grim $HOME/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
 # Region select → file
-bindsym $mod+Shift+s exec sh -c 'grim -g "$(slurp)" $HOME/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
-
+bindsym $mod+Shift+s exec sh -c 'grim -g "$(slurp)" - | wl-copy'
 # Full screen → clipboard
 bindsym Ctrl+Print exec sh -c 'grim - | wl-copy'
 
 # Region select → clipboard
-bindsym $mod+Ctrl+Print exec sh -c 'grim -g "$(slurp)" - | wl-copy'
+bindsym $mod+Print exec sh -c 'grim -g "$(slurp)" $HOME/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
 
-bindsym $mod+e exec dolphin
+# file manager
+bindsym $mod+e exec $file_manager
 
-# kde connect 
-exec kdeconnect-daemon
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# Gaming optimisations
+for_window [class="steam_app_*"] floating enable
+for_window [class="steam_app_*"] inhibit_idle fullscreen
+for_window [class="Steam"] floating enable
+
+# XWayland games
+for_window [title="steam_app_*"] floating enable
+for_window [title="steam_app_*"] inhibit_idle fullscreen
 
 include /etc/sway/config.d/*
