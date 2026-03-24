@@ -25,12 +25,12 @@ rm -rf Dotfiles
 ## requirments 
 ```bash
 # arch
-sudo pacman -S kitty waybar sway wofi hyprlock
+sudo pacman -S  kitty wofi waybar swayosd swayidle swaylock mako grim slurp wl-clipboard nautilus blueman network-manager-applet kdeconnect gnome-keyring brightnessctl
 
 # debian / ubuntu
-sudo apt install kitty waybar sway wofi hyprlock
+sudo apt install kitty wofi waybar swayosd swayidle swaylock mako grim slurp wl-clipboard nautilus blueman network-manager-applet kdeconnect gnome-keyring brightnessctl
 
 # ferdora
-sudo dnf install kitty waybar sway wofi hyprlock
+sudo dnf install kitty wofi waybar swayosd swayidle swaylock mako grim slurp wl-clipboard nautilus blueman network-manager-applet kdeconnect gnome-keyring brightnessctl
 ```
 use the relevant command to install all needed software on your system if you would like to use the dotfiles 
