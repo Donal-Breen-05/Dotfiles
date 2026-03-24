@@ -14,8 +14,8 @@
     "modules-center": [],
 
     "modules-right": [
+        "custom/power-profile",
         "tray",
-        "network",
         "pulseaudio",
         "backlight",
         "battery",
@@ -39,6 +39,13 @@
     },
 
     // ── Right ─────────────────────────────────────────────────────────────
+    "custom/power-profile": {
+        "exec": "~/.config/waybar/scripts/power_profiles.sh --status",
+        "interval": 2,
+        "on-click": "~/.config/waybar/scripts/power_profiles.sh --cycle",
+        "return-type": "json",
+        "tooltip": true
+    },
     "tray": {
         "icon-size": 16,
         "spacing": 8
@@ -52,18 +59,7 @@
         "on-click": "makoctl invoke",
         "on-click-right": "makoctl dismiss --all"
     },
-    
-    "network": {
-        "format-wifi": "󰤨",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰤭",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "{ifname}",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "bash -c 'if command -v nm-connection-editor &>/dev/null; then nm-connection-editor; elif command -v wl-wifi &>/dev/null; then wl-wifi; else foot nmtui; fi'"
-    },
-
-    "pulseaudio": {
+       "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
