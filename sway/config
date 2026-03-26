@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $file_manager thunar
+set $file_manager nautilus
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -298,14 +298,15 @@ exec_always kdeconnect-indicator
 bindsym $mod+slash exec sh -c ~/.config/sway/scripts/show-keyboard.sh
 bindsym $mod+p exec sh -c ~/.config/sway/scripts/power-menu.sh
 
+
 ###################################
-#     power button                # 
+#     power button & idle         # 
 ###################################
 exec swayidle -w \
-    timeout 300 'swaymsg "output * dpms off" && swaylock -f --grace 0' \
+    timeout 300 'swaylock -f -c 000000' \
     timeout 600 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f --grace 0'
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c 000000'
 # Full screen screenshot → saves to ~/Pictures
 #bindsym Print exec sh -c 'grim $HOME/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
