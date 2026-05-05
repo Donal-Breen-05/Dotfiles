@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════
+   SwayNC — matching Waybar lime theme
+   ═══════════════════════════════════════ */
+
+/* ── Control center background ───────── */
+.control-center {
+    background: rgba(0, 0, 0, 0.45);
+    border-left: 1px solid rgba(166, 227, 161, 0.35);
+    color: #a6e3a1;
+}
+
+/* ── Notification popups ─────────────── */
+.notification {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(166, 227, 161, 0.55);
+    border-radius: 6px;
+    margin: 6px;
+    padding: 10px;
+    color: #a6e3a1;
+    box-shadow: 0 0 6px rgba(166, 227, 161, 0.15);
+}
+
+/* ── Notification hover ──────────────── */
+.notification:hover {
+    background: rgba(166, 227, 161, 0.10);
+    box-shadow: 0 0 10px rgba(166, 227, 161, 0.35);
+}
+
+/* ── Title (app name) ────────────────── */
+.notification .summary {
+    font-weight: 600;
+    color: #a6e3a1;
+}
+
+/* ── Body text ───────────────────────── */
+.notification .body {
+    color: rgba(166, 227, 161, 0.75);
+}
+
+/* ── Buttons inside notifications ────── */
+.notification button {
+    background: rgba(166, 227, 161, 0.10);
+    border: 1px solid rgba(166, 227, 161, 0.4);
+    border-radius: 4px;
+    color: #a6e3a1;
+}
+
+.notification button:hover {
+    background: rgba(166, 227, 161, 0.20);
+}
+
+/* ── Control center header ───────────── */
+.widget-title {
+    color: #a6e3a1;
+    font-weight: bold;
+}
+
+/* ── Clear / DND buttons ─────────────── */
+.widget-dnd,
+.widget-clear {
+    background: rgba(166, 227, 161, 0.10);
+    border: 1px solid rgba(166, 227, 161, 0.5);
+    border-radius: 5px;
+    color: #a6e3a1;
+}
+
+.widget-dnd:hover,
+.widget-clear:hover {
+    background: rgba(166, 227, 161, 0.20);
+    box-shadow: 0 0 6px rgba(166, 227, 161, 0.3);
+}
+
+/* ── Scrollbar ───────────────────────── */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(166, 227, 161, 0.4) transparent;
+}

@@ -11,6 +11,13 @@
     min-height:    0;
 }
 
+#pulseaudio,
+#battery,
+#backlight,
+#clock {
+    font-family: "JetBrainsMono Nerd Font";
+}
+
 /* ── Bar window ───────────────────────────────────────────────────── */
 window#waybar {
     background-color: rgba(0, 0, 0, 0.45);
@@ -70,6 +77,9 @@ window#waybar {
 /* ═══════════════════════════════════════════════════════════════════
    RIGHT — shared lime-green box style
    ═══════════════════════════════════════════════════════════════════ */
+#custom-notifications {
+    font-family: "JetBrainsMono Nerd Font";
+}
 
 /* Every right-side module gets a lime box */
 #tray,
@@ -77,6 +87,8 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #battery,
+#custom-notifications,
+#custom-playerctl,
 #clock {
     background:   rgba(166, 227, 161, 0.10);
     border:       1px solid rgba(166, 227, 161, 0.55);
@@ -93,10 +105,13 @@ window#waybar {
 #pulseaudio:hover,
 #backlight:hover,
 #battery:hover,
+#custom-notifications:hover,
+#custom-playerctl:hover,
 #clock:hover {
     background: rgba(166, 227, 161, 0.20);
     box-shadow: 0 0 6px rgba(166, 227, 161, 0.45);
 }
+
 
 /* ── Tray ─────────────────────────────────────────────────────────── */
 #tray {

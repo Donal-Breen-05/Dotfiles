@@ -1,4 +1,4 @@
-# Default config for sway
+# Default Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
@@ -24,7 +24,7 @@ set $menu wofi --show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output "*" bg /home/donal/Pictures/wallpaper/38c1acea277bbe23f24c9ff33a050d4c-2305713069.jpg fill
+output "*" bg /home/donal/Photos/walllpaper.png fill
 #
 # Example configuration:
 #
@@ -243,13 +243,27 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 # Volume
-bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
-bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
-bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume=raise
+bindsym XF86AudioLowerVolume exec swayosd-client --output-volume=lower
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+
+# Brightness
+bindsym XF86MonBrightnessUp exec swayosd-client --brightness=raise
+bindsym XF86MonBrightnessDown exec swayosd-client --brightness=lower
+
+
+
+# Volume
+#bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+#bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
+#bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
 
 #brightness
-bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
-bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
+#bindsym --locked XF86MonBrightnessUp exec swayosd-client --brightness raise
+#bindsym --locked XF86MonBrightnessDown exec swayosd-client --brightness lower
+
+
+
 # remove the top border on the windows 
 default_border pixel 2
 default_floating_border pixel 0
@@ -260,13 +274,20 @@ gaps outer 6
 smart_gaps on
 smart_borders on
 
-
 # _________________________________________________________________________________________________________
 # exec 
 # _________________________________________________________________________________________________________
 
+
+# set user space folders 
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec_always /usr/lib/xdg-desktop-portal-wlr
+
+
 #on screen stuff 
-exec_always swayosd-server
+exec_always swayosd-server  
+
+
 
 # start waybar 
 exec_always --no-startup-id waybar
@@ -275,7 +296,8 @@ exec_always --no-startup-id waybar
 exec gnome-keyring-daemon --start --components=secrets,pkcs11,ssh
 
 # notification daemon 
-exec mako
+#exec mako
+exec_always swaync
 
 # kde connect 
 exec kdeconnect-daemon
@@ -300,13 +322,15 @@ bindsym $mod+p exec sh -c ~/.config/sway/scripts/power-menu.sh
 
 
 ###################################
-#     power button & idle         # 
+#     power button & idle         #
 ###################################
 exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
     timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -f -c 000000'
+
+bindsym Ctrl+$mod+l exec sh -c 'swaylock -f -c 000000'
 # Full screen screenshot → saves to ~/Pictures
 #bindsym Print exec sh -c 'grim $HOME/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png'
 

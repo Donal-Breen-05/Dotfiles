@@ -1,26 +1,27 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
+    "height": 42,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
     "reload_style_on_change": true,
 
     "modules-left": [
-        "sway/workspaces"
+        "sway/workspaces",
+        "custom/playerctl"
     ],
 
     "modules-center": [],
 
     "modules-right": [
         "custom/power-profile",
+        "custom/notifications",
         "tray",
         "pulseaudio",
         "backlight",
         "battery",
-        "clock",
-        "custom/notification"
+        "clock"
     ],
 
     // ── Left ──────────────────────────────────────────────────────────────
@@ -38,6 +39,15 @@
         }
     },
 
+    "custom/playerctl": {
+        "exec": "~/.config/waybar/scripts/playerctl.sh",
+        "interval": 1,
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-scroll-up": "playerctl previous"
+    },
+
     // ── Right ─────────────────────────────────────────────────────────────
     "custom/power-profile": {
         "exec": "~/.config/waybar/scripts/power_profiles.sh --status",
@@ -46,22 +56,23 @@
         "return-type": "json",
         "tooltip": true
     },
+
+    "custom/notifications": {
+        "exec": "~/.config/waybar/scripts/notif.sh",
+        "interval": 2,
+        "on-click": "swaync-client -t",
+        "on-click-right": "swaync-client -d"
+    },
+
     "tray": {
         "icon-size": 16,
         "spacing": 8
     },
-        
-    
-    "custom/notification": {
-        "exec": "makoctl list | grep -c 'id'",
-        "interval": 2,
-        "format": "🔔 {}",
-        "on-click": "makoctl invoke",
-        "on-click-right": "makoctl dismiss --all"
-    },
-       "pulseaudio": {
+
+    // ── Audio ─────────────────────────────────────────────────────────────
+    "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
+        "format-muted": "󰝟 {volume}%",
         "format-icons": {
             "default": ["󰕿", "󰖀", "󰕾"]
         },
@@ -71,27 +82,32 @@
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
 
+    // ── Brightness ───────────────────────────────────────────────────────
     "backlight": {
-        "format": "{icon} {percent}%" ,
+        "format": "{icon} {percent}%",
         "format-icons": ["󰃞", "󰃟", "󰃠"],
         "tooltip-format": "Brightness: {percent}%",
         "on-scroll-up": "brightnessctl set +5%",
-        "on-scroll-down": "brightnessctl set 5%-",
-        "on-click": "bash -c 'if command -v wdisplays &>/dev/null; then wdisplays; else foot brightnessctl; fi'"
+        "on-scroll-down": "brightnessctl set 5%-"
     },
 
+    // ── Battery ───────────────────────────────────────────────────────────
     "battery": {
         "format": "{icon} {capacity}%",
-        "format-charging": "󰂄",
-        "format-plugged": "󰚥",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": [
+            "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
+            "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
         "tooltip-format": "{capacity}% — {timeTo}",
         "states": {
-            "critical": 15,
-            "warning": 30
+            "warning": 30,
+            "critical": 15
         }
     },
 
+    // ── Clock ─────────────────────────────────────────────────────────────
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%Y-%m-%d %H:%M:%S}",
