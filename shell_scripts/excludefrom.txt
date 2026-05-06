@@ -1,0 +1,337 @@
+# ============================================================
+# PYTHON
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+.env/
+virtualenv/
+.virtualenv/
+ENV/
+.pyenv/
+.pipenv/
+Pipfile.lock
+poetry.lock
+.tox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.cover
+
+# ============================================================
+# NODE / JAVASCRIPT / TYPESCRIPT / ELECTRON
+# ============================================================
+node_modules/
+.npm/
+.yarn/
+.pnp/
+.pnp.js
+yarn.lock
+package-lock.json
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.turbo/
+out/
+.svelte-kit/
+
+# ============================================================
+# JAVA
+# ============================================================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+target/
+.gradle/
+.mvn/
+build/
+out/
+dependency-reduced-pom.xml
+*.ctxt
+
+# ============================================================
+# KOTLIN
+# ============================================================
+*.kotlin_module
+.kotlin/
+
+# ============================================================
+# ANDROID
+# ============================================================
+*.apk
+*.aab
+*.ap_
+*.dex
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# ============================================================
+# SWIFT / XCODE / IOS
+# ============================================================
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+*.playground/timeline.xctimeline
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+Pods/
+.build/
+
+# ============================================================
+# RUST
+# ============================================================
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# ============================================================
+# GO
+# ============================================================
+vendor/
+*.exe
+*.exe~
+*.test
+*.out
+go.sum
+
+# ============================================================
+# C / C++
+# ============================================================
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.out
+*.exe
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.make
+*.d
+
+# ============================================================
+# C# / .NET
+# ============================================================
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+_ReSharper*/
+*.resharper
+NuGet.Config
+
+# ============================================================
+# RUBY
+# ============================================================
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.bundle/
+vendor/bundle/
+Gemfile.lock
+.ruby-version
+.rvmrc
+
+# ============================================================
+# PHP
+# ============================================================
+vendor/
+composer.lock
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# ============================================================
+# DART / FLUTTER
+# ============================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+build/
+
+# ============================================================
+# SCALA
+# ============================================================
+*.class
+*.log
+.cache/
+dist/
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.scala_dependencies
+.worksheet
+
+# ============================================================
+# HASKELL
+# ============================================================
+dist/
+dist-newstyle/
+cabal-dev/
+*.o
+*.hi
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc/
+.hsenv/
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+.stack-work/
+
+# ============================================================
+# LUA
+# ============================================================
+luac.out
+*.luac
+
+# ============================================================
+# R
+# ============================================================
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# ============================================================
+# BUILD TOOLS
+# ============================================================
+.gradle/
+.mvn/
+target/
+build/
+dist/
+out/
+bin/
+obj/
+
+# ============================================================
+# IDEs
+# ============================================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+nbproject/
+.eclipse/
+.settings/
+.project
+.classpath
+*.launch
+.vs/
+*.suo
+*.code-workspace
+.metals/
+.bloop/
+
+# ============================================================
+# VERSION CONTROL
+# ============================================================
+.git/
+.svn/
+.hg/
+
+# ============================================================
+# DOCKER / CONTAINERS
+# ============================================================
+.docker/
+
+# ============================================================
+# TERRAFORM
+# ============================================================
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+
+# ============================================================
+# ENVIRONMENT / SECRETS
+# ============================================================
+.env
+.env.*
+*.pem
+*.key
+*.cert
+*.p12
+secrets/
+credentials/
+
+# ============================================================
+# LOGS / TEMP
+# ============================================================
+*.log
+logs/
+*.tmp
+*.temp
+*.swp
+*~
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================================
+# OS
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
