@@ -1,5 +1,5 @@
-# Dotfiles
-A backup of dotfiles and config files that i use in my setup 
+# Dotfiles and Scripts
+A backup of dotfiles and Bash scripts that i use in my setup 
 
 
 
@@ -15,6 +15,9 @@ cd Dotfiles/
 
 # copy all folders to the .config directory
 cp -r * ~/.config/
+
+# copy the scripts direcroty to ~/
+cp -r ~/.config/shell_scripts/ ~/
 
 # remove foldeer
 cd ..
